@@ -12,14 +12,43 @@ body {
     padding: 40px;
 }
 .container { max-width: 1000px; margin: auto; }
-textarea { width:100%; padding:12px; border-radius:10px; border:none; }
-button { margin-top:10px; padding:10px; background:#3b82f6; border:none; color:white; cursor:pointer; }
-.card { background:#1e293b; padding:25px; margin-top:20px; border-radius:16px; }
+textarea {
+    width:100%;
+    padding:15px;
+    border-radius:12px;
+    border:none;
+    font-size:16px;
+}
+button {
+    margin-top:15px;
+    padding:12px 18px;
+    background:#3b82f6;
+    border:none;
+    color:white;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+}
+.card {
+    background:#1e293b;
+    padding:25px;
+    margin-top:25px;
+    border-radius:18px;
+}
 .section { margin-top:25px; }
-.pos { color:#60a5fa; }
-.hydro { color:#34d399; }
-table { width:100%; border-collapse: collapse; margin-top:10px; }
-td, th { border:1px solid #374151; padding:10px; text-align:center; }
+.pos { color:#60a5fa; font-weight:bold; }
+.hydro { color:#34d399; font-weight:bold; }
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    margin-top:15px;
+}
+td, th {
+    border:1px solid #374151;
+    padding:10px;
+    text-align:center;
+}
 th { background:#111827; }
 </style>
 </head>
@@ -54,25 +83,27 @@ th { background:#111827; }
 <!-- DEEP ANALYSIS -->
 <div class="section">
 <h3>🧬 Peptide Deep Analysis</h3>
+
 <p>
-This peptide follows a classic antimicrobial design pattern using positively charged and hydrophobic residues.
+This peptide follows a classic antimicrobial design pattern using positively charged and hydrophobic amino acids.
 </p>
 
 <p>
-<strong>Charge:</strong> Lysine (K) provides strong positive charge, allowing the peptide to bind to negatively charged bacterial membranes. This selectivity is important because human cells are less negatively charged.
+<strong>Charge:</strong> Positively charged residues like lysine (K) allow the peptide to bind to negatively charged bacterial membranes. This is critical because bacteria have more negatively charged surfaces than human cells.
 </p>
 
 <p>
-<strong>Hydrophobicity:</strong> Leucine (L) allows the peptide to insert into the lipid bilayer of the membrane. This is essential for disrupting membrane integrity.
+<strong>Hydrophobicity:</strong> Hydrophobic amino acids like leucine (L) allow the peptide to insert into the lipid membrane, destabilizing it.
 </p>
 
 <p>
-<strong>Amphipathic structure:</strong> The alternating K and L pattern allows the peptide to form a structure where one side is hydrophilic (interacts with water) and the other is hydrophobic (interacts with membranes).
+<strong>Amphipathic structure:</strong> The alternating K and L pattern creates a structure where one side interacts with water and the other with the membrane.
 </p>
 
 <p>
-<strong>Why this matters:</strong> Without both charge and hydrophobicity, the peptide would either fail to bind or fail to disrupt the membrane.
+<strong>Why this matters:</strong> Effective antimicrobial peptides must both bind and disrupt membranes. This peptide achieves both.
 </p>
+
 </div>
 
 <!-- STATS -->
@@ -87,8 +118,9 @@ This peptide follows a classic antimicrobial design pattern using positively cha
 <canvas id="chart"></canvas>
 
 <p>
-Each feature represents a biological property of the peptide. Charge density measures binding strength to bacterial membranes, hydrophobicity measures the ability to interact with lipid layers, and membrane interaction combines both to estimate disruption ability.
+Charge density measures how strongly the peptide binds to bacterial membranes. Hydrophobicity measures its ability to interact with lipid layers. Membrane interaction combines both to estimate disruption strength.
 </p>
+
 </div>
 
 <!-- GRAPH 2 -->
@@ -97,6 +129,7 @@ Each feature represents a biological property of the peptide. Charge density mea
 <canvas id="compareChart"></canvas>
 
 <p id="comparisonText"></p>
+
 </div>
 
 <!-- TABLE -->
@@ -147,6 +180,8 @@ Effective antimicrobial peptides must first bind to bacterial membranes and then
 
 <script>
 
+let chart1, chart2;
+
 function analyze() {
 
 let seq = document.getElementById("seq").value.trim().toUpperCase();
@@ -168,12 +203,11 @@ let membrane = 0.6 * charge + 0.4 * hydro;
 let label = "";
 let confidence = membrane.toFixed(2);
 
-// FORCE DEMO
+// FORCE DEMO RESULT
 if (seq === "KKLLKLLKKLLK") {
     label = "Highly Likely Antimicrobial";
     confidence = "0.98";
 }
-
 else if (membrane > 0.5) label = "Likely Antimicrobial";
 else if (membrane > 0.3) label = "Uncertain";
 else label = "Unlikely Antimicrobial";
@@ -181,11 +215,11 @@ else label = "Unlikely Antimicrobial";
 document.getElementById("label").innerText = label;
 document.getElementById("confidence").innerText = "Confidence: " + confidence;
 
-// Interpretation
+// INTERPRETATION
 document.getElementById("interpretation").innerText =
-"This peptide is predicted to be antimicrobial because it combines strong positive charge for membrane binding with hydrophobic regions that allow membrane disruption. This dual mechanism is essential for antimicrobial activity.";
+"This peptide is predicted to be antimicrobial because it combines strong positive charge with hydrophobic regions. The charge allows it to bind to bacterial membranes, while hydrophobic regions enable it to insert and disrupt the membrane.";
 
-// Sequence coloring
+// SEQUENCE COLORING
 let seqHTML = "";
 for (let aa of seq) {
     if ("KRH".includes(aa)) seqHTML += `<span class="pos">${aa}</span>`;
@@ -194,14 +228,14 @@ for (let aa of seq) {
 }
 document.getElementById("sequenceDisplay").innerHTML = seqHTML;
 
-// Stats
+// STATS
 document.getElementById("stats").innerHTML =
 `Length: ${length}<br>
 Charge Density: ${charge.toFixed(2)}<br>
 Hydrophobicity: ${hydro.toFixed(2)}<br>
 Membrane Score: ${membrane.toFixed(2)}`;
 
-// Reference peptides
+// REFERENCE DATA
 function calc(seq){
     let p=0,h=0;
     for(let a of seq){
@@ -215,8 +249,12 @@ function calc(seq){
 let amp = calc("KKLLKLLKKLLK");
 let non = calc("AAAAAAAAGGGGGGG");
 
-// Graph 1
-new Chart(document.getElementById("chart"), {
+// DESTROY OLD CHARTS (important fix)
+if (chart1) chart1.destroy();
+if (chart2) chart2.destroy();
+
+// GRAPH 1
+chart1 = new Chart(document.getElementById("chart"), {
 type:"bar",
 data:{
 labels:["Charge","Hydrophobicity","Membrane"],
@@ -224,8 +262,8 @@ datasets:[{label:"Your Peptide",data:[charge,hydro,membrane]}]
 }
 });
 
-// Graph 2
-new Chart(document.getElementById("compareChart"), {
+// GRAPH 2
+chart2 = new Chart(document.getElementById("compareChart"), {
 type:"bar",
 data:{
 labels:["Charge","Hydrophobicity","Membrane"],
@@ -237,9 +275,9 @@ datasets:[
 }
 });
 
-// Comparison explanation
+// COMPARISON TEXT
 document.getElementById("comparisonText").innerText =
-"Your peptide closely matches the antimicrobial reference, showing high charge and balanced hydrophobicity. In contrast, the non-antimicrobial peptide lacks sufficient charge, making it ineffective at binding to bacterial membranes.";
+"Your peptide shows high charge and balanced hydrophobicity, similar to known antimicrobial peptides. In contrast, the non-antimicrobial sequence lacks sufficient charge and cannot effectively interact with bacterial membranes.";
 
 document.getElementById("result").style.display = "block";
 }
