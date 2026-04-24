@@ -174,38 +174,38 @@ document.getElementById("confidence").innerText = "Confidence: " + confidence;
 if (mode === "student") {
 
 document.getElementById("interpretation").innerText =
-"This peptide is predicted to be antimicrobial because it has two important properties: positive charge and hydrophobic regions. The positive charge helps the peptide stick to bacteria, which have negatively charged surfaces. Once attached, the hydrophobic parts allow it to push into the membrane and break it.";
+"This peptide is predicted to be antimicrobial because it has positive charge to attach to bacteria and hydrophobic regions that help break the membrane.";
 
 document.getElementById("deepAnalysis").innerText =
-"In simple terms, this peptide works like a two-step tool. First, it finds bacteria using its charge. Then, it damages the bacteria by breaking its outer layer. Without both of these steps, the peptide would not be effective. Many natural antimicrobial peptides in the immune system use this same strategy.";
+"This peptide works in two steps: first it sticks to bacteria using charge, then it damages the membrane using hydrophobic regions. Both steps are necessary for antimicrobial activity.";
 
 document.getElementById("featureExplanation").innerText =
-"The graph shows how strong your peptide is in different properties. Higher charge means stronger attraction to bacteria. Hydrophobicity shows how well it can interact with the membrane. The membrane score combines both and gives an overall idea of effectiveness.";
+"This graph breaks down the main properties that determine whether a peptide can kill bacteria. Charge density shows how strongly the peptide is attracted to bacterial membranes, which are negatively charged. Hydrophobicity shows how well the peptide can interact with the fatty (lipid) layer of the membrane. The membrane score combines both of these ideas to estimate how effectively the peptide can attach to and disrupt the membrane. A strong antimicrobial peptide usually has high charge and a balanced level of hydrophobicity, allowing it to both bind and damage bacteria.";
 
 document.getElementById("comparisonText").innerText =
-"When comparing your peptide to a strong antimicrobial peptide, we see that both have high charge and balanced hydrophobicity. The weak peptide does not have enough charge, so it cannot attach properly to bacteria, which makes it ineffective.";
+"This comparison shows how your peptide performs against a known antimicrobial peptide and a weak, non-antimicrobial sequence. The antimicrobial peptide has strong charge and good hydrophobic balance, which allows it to effectively attack bacterial membranes. The non-antimicrobial peptide lacks these features, especially charge, so it cannot attach to bacteria. Your peptide closely matches the antimicrobial profile, meaning it has the right combination of properties to both bind to and disrupt bacterial membranes.";
 
 document.getElementById("tableExplanation").innerText =
-"A good antimicrobial peptide needs to first stick to bacteria and then break their membrane. If either part is missing, it will not work well.";
+"Effective peptides need both charge and hydrophobicity. Without charge, they cannot attach to bacteria, and without hydrophobicity, they cannot break the membrane.";
 
 }
 
 else {
 
 document.getElementById("interpretation").innerText =
-"This peptide demonstrates antimicrobial potential due to its cationic charge distribution and hydrophobic residue composition. The electrostatic interaction with negatively charged bacterial membranes facilitates initial binding, followed by hydrophobic insertion into the lipid bilayer.";
+"This peptide exhibits antimicrobial activity due to its cationic charge and hydrophobic residues enabling membrane disruption.";
 
 document.getElementById("deepAnalysis").innerText =
-"The sequence exhibits amphipathic characteristics, which are essential for antimicrobial activity. This allows spatial separation between hydrophilic and hydrophobic regions, enabling membrane targeting and disruption. Such peptides often adopt alpha-helical conformations that enhance membrane insertion and destabilization.";
+"The peptide demonstrates amphipathic properties that facilitate membrane binding and insertion. These characteristics are critical for antimicrobial function.";
 
 document.getElementById("featureExplanation").innerText =
-"The feature graph quantifies charge density, hydrophobic ratio, and combined membrane interaction score. These parameters are widely used in computational antimicrobial peptide prediction and reflect the peptide's ability to bind and disrupt bacterial membranes.";
+"This feature analysis quantifies key physicochemical properties associated with antimicrobial peptide activity. Charge density reflects the peptide’s cationic nature, which drives electrostatic interactions with negatively charged bacterial membranes. Hydrophobicity represents the peptide’s ability to partition into lipid bilayers. The membrane interaction score integrates these properties, providing a simplified estimate of membrane disruption potential. Effective antimicrobial peptides typically exhibit an optimal balance between charge and hydrophobicity, enabling selective membrane permeabilization.";
 
 document.getElementById("comparisonText").innerText =
-"The peptide closely matches the antimicrobial reference profile, particularly in charge density and amphipathicity. In contrast, the non-antimicrobial sequence lacks sufficient cationic residues and hydrophobic balance, preventing effective membrane interaction.";
+"The comparison highlights how the peptide aligns with established antimicrobial profiles. The reference antimicrobial peptide demonstrates high cationic charge and amphipathic balance, both essential for membrane targeting and disruption. In contrast, the non-antimicrobial sequence lacks sufficient charge and hydrophobic organization, preventing effective membrane interaction. The similarity between your peptide and the antimicrobial reference suggests that it possesses the structural and physicochemical characteristics required for antimicrobial activity.";
 
 document.getElementById("tableExplanation").innerText =
-"Effective antimicrobial peptides require a balance between electrostatic attraction and hydrophobic insertion. This balance enables selective targeting of bacterial membranes while minimizing damage to host cells.";
+"Antimicrobial peptides require a balance between electrostatic attraction and hydrophobic insertion to effectively disrupt bacterial membranes.";
 
 }
 
